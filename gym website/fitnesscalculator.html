@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Calculator - Moiz Fitness</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('8.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Align content to the left */
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            margin: 0px 0px 0px -50px;
+        }
+
+        .left img {
+            width: 60px;
+            border: 3px solid #21b5da;
+            border-radius: 50%;
+            margin: 0px 0px 0px 50px;
+        }
+
+        .mid .navbar {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar li a:hover {
+            color: #21b5da;
+            text-decoration: underline;
+        }
+
+        .right .btn {
+            color: white;
+            background-color: #3c5164;
+            padding: 10px 20px;
+            border: 2px solid #21b5da;
+            border-radius: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .right .btn:hover {
+            background-color: #21b5da;
+            color: black;
+        }
+
+        /* Calculator Container Styles */
+        .calculator-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid #21b5da;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 100px 250px; /* Adjusted margin for left alignment */
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .calculator-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #21b5da;
+            text-align: left; /* Align heading to the left */
+        }
+
+        .calculator-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #21b5da;
+        }
+
+        .calculator-container input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #21b5da;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .calculator-container input:focus {
+            border-color: #21b5da;
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        /* Improved Dropdown Styles */
+        .calculator-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #21b5da;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none; /* Remove default arrow for Safari */
+            -moz-appearance: none; /* Remove default arrow for Firefox */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calculator-container select:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .calculator-container select:focus {
+            border-color: #21b5da;
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        /* Ensure dropdown options are visible and left-aligned */
+        .calculator-container select option {
+            background-color: rgba(0, 0, 0, 0.8); /* Dark background for options */
+            color: white; /* White text for options */
+            padding: 10px; /* Add padding for better readability */
+        }
+
+        .calculator-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3c5164;
+            border: 2px solid #21b5da;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .calculator-container button:hover {
+            background-color: #21b5da;
+            color: black;
+        }
+
+        .calculator-container .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #21b5da;
+            text-align: left; /* Align result text to the left */
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .mid .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .right {
+                margin-top: 20px;
+            }
+
+            .calculator-container {
+                margin: 50px auto;
+                padding: 20px;
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="left">
+            <img src="logo.jpg" alt="Moiz Fitness Logo">
+        </div>
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="fitness-calculator.html" class="active">Fitness Calculator</a></li>
+                <li><a href="Contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <button class="btn">Call Us</button>
+            <button class="btn">Email Us</button>
+        </div>
+    </header>
+    <div class="calculator-container">
+        <h2>Fitness Calculator</h2>
+        <form id="fitnessForm">
+            <label for="height">Height (in cm):</label>
+            <input type="number" id="height" placeholder="Enter your height" required>
+
+            <label for="weight">Weight (in kg):</label>
+            <input type="number" id="weight" placeholder="Enter your weight" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" placeholder="Enter your age" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+            <button type="button" onclick="calculateCalories()">Calculate Daily Calories</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to meters
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            if (isNaN(height) || isNaN(weight)) {
+                document.getElementById('result').innerText = "Please enter valid height and weight.";
+                return;
+            }
+
+            const bmi = (weight / (height * height)).toFixed(2);
+            document.getElementById('result').innerText = `Your BMI is: ${bmi}`;
+        }
+
+        function calculateCalories() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseFloat(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+
+            if (isNaN(weight) || isNaN(height) || isNaN(age)) {
+                document.getElementById('result').innerText = "Please enter valid weight, height, and age.";
+                return;
+            }
+
+            let calories;
+            if (gender === "male") {
+                calories = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                calories = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+
+            document.getElementById('result').innerText = `Your daily calorie intake is: ${calories.toFixed(2)} kcal`;
+        }
+    </script>
+</body>
+</html>

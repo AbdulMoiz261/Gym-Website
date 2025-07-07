@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Moiz Fitness</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('8.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            margin: 0px 0px 0px -50px;
+        }
+
+        .left img {
+            width: 60px;
+            border: 3px solid #21b5da;
+            border-radius: 50%;
+            margin: 0px 0px 0px 50px;
+        }
+
+        .mid .navbar {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar li a:hover {
+            color: #21b5da;
+            text-decoration: underline;
+        }
+
+        .right .btn {
+            color: white;
+            background-color: #3c5164;
+            padding: 10px 20px;
+            border: 2px solid #21b5da;
+            border-radius: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .right .btn:hover {
+            background-color: #21b5da;
+            color: black;
+        }
+
+        /* Contact Us Container Styles */
+        .contact-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px solid #21b5da;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 100px 350px;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #21b5da;
+            text-align: left;
+        }
+
+        .contact-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #21b5da;
+        }
+
+        .contact-container input,
+        .contact-container textarea {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #21b5da;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .contact-container input:focus,
+        .contact-container textarea:focus {
+            border-color: #21b5da;
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .contact-container textarea {
+            resize: vertical; /* Allow vertical resizing */
+            height: 100px; /* Initial height */
+        }
+
+        .contact-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3c5164;
+            border: 2px solid #21b5da;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-container button:hover {
+            background-color: #21b5da;
+            color: black;
+        }
+
+        .contact-container .success-message {
+            display: none;
+            color: #21b5da;
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .mid .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .right {
+                margin-top: 20px;
+            }
+
+            .contact-container {
+                margin: 50px auto;
+                padding: 20px;
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="left">
+            <img src="logo.jpg" alt="Moiz Fitness Logo">
+        </div>
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="fitnesscalculator.html">Fitness Calculator</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <button class="btn">Call Us</button>
+            <button class="btn">Email Us</button>
+        </div>
+    </header>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" placeholder="Enter your message" required></textarea>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <div class="success-message" id="successMessage">Thank you for contacting us!</div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
