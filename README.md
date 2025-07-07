@@ -29,7 +29,4 @@ This project is a modern, responsive website for a gym and fitness business, bui
 
 Feel free to explore the code, provide feedback, or contribute to improvements. To view the project locally, clone this repository and open `index.html` in your browser.
 
-```bash
-git clone https://github.com/yourusername/gym-website.git
-cd gym-website
-open index.html
+
